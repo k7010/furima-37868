@@ -15,21 +15,21 @@
 # association
 - has_many :items
 - has_many :orders, dependent: :destroy
-- has_one :sipping_address, dependent: :destroy
 
 
 
 # items
-| column          | Type      | options       |
-|---------------- | --------- |-------------- |
-| name            | string    | null: false   |
-| description     | text      | null: false   |
-| category_id     | integer   | null: false   |
-| status_id       | integer   | null: false   |
-| cost_id         | integer   | null: false   |
-| prefecture_id   | integer   | null: false   |
-| day_id          | integer   | null: false   |
-| price           | integer   | null: false   |
+| column          | Type      | options                       |
+|---------------- | --------- |------------------------------ |
+| name            | string    | null: false                   |
+| description     | text      | null: false                   |
+| category_id     | integer   | null: false                   |
+| status_id       | integer   | null: false                   |
+| cost_id         | integer   | null: false                   |
+| prefecture_id   | integer   | null: false                   |
+| day_id          | integer   | null: false                   |
+| price           | integer   | null: false                   |
+| user_id         | integer   | null: false, foreign_key: true|
 
 # association
 - belongs_to :user
@@ -39,7 +39,6 @@
 - belongs_to :prefecture
 - belongs_to :day
 - has_one :order
-
 
 
 
@@ -65,7 +64,7 @@
 | address         | string    | null: false                       |
 | building        | string    |                                   |
 | telephone       | string    | null: false                       |
+| order_id        | integer   | null: false, foreign_key: true    |
 
 # association
-- belongs_to :user
 - belongs_to :order
