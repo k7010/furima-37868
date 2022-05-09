@@ -13,8 +13,9 @@
 | birthday            | date    | null: false                 |
 
 # association
-has_many :items
-has_one :buyer, dependent: :destroy
+- has_many :items
+- has_many :orders, dependent: :destroy
+- has_one :sipping_address, dependent: :destroy
 
 
 
@@ -27,18 +28,37 @@ has_one :buyer, dependent: :destroy
 | status_id       | integer   | null: false   |
 | cost_id         | integer   | null: false   |
 | prefecture_id   | integer   | null: false   |
-| days_id         | integer   | null: false   |
+| day_id          | integer   | null: false   |
 | price           | integer   | null: false   |
 
 # association
-belongs_to :user
+- belongs_to :user
+- belongs_to :category
+- belongs_to :status
+- belongs_to :cost
+- belongs_to :prefecture
+- belongs_to :day
+- has_one :order
 
 
 
-# buyers
+
+# orders
+| column    | Types        | options                          |
+|---------- | ------------ | -------------------------------- |
+| user      | references   | null: false, foreign_key: true   |
+| item      | references   | null: false, foreign_key: true   |
+
+# association
+- belongs_to :user
+- belongs_to :item
+- has_one :shipping_address
+
+
+
+# shipping_addresses
 | column          | Type      | options                           |
 |---------------- | --------- | --------------------------------- |
-| user_id         | integer   | null: false, foreign_key: true    |
 | postal_code     | string    | null: false                       |
 | prefecture_id   | integer   | null: false                       |
 | city            | string    | null: false                       |
@@ -47,4 +67,5 @@ belongs_to :user
 | telephone       | string    | null: false                       |
 
 # association
-belongs_to :user
+- belongs_to :user
+- belongs_to :order
