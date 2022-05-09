@@ -56,15 +56,15 @@
 
 
 # shipping_addresses
-| column          | Type      | options                           |
-|---------------- | --------- | --------------------------------- |
-| postal_code     | string    | null: false                       |
-| prefecture_id   | integer   | null: false                       |
-| city            | string    | null: false                       |
-| address         | string    | null: false                       |
-| building        | string    |                                   |
-| telephone       | string    | null: false                       |
-| order_id        | integer   | null: false, foreign_key: true    |
+| column          | Type        | options                           |
+|---------------- | ----------- | --------------------------------- |
+| postal_code     | string      | null: false                       |
+| prefecture_id   | integer     | null: false                       |
+| city            | string      | null: false                       |
+| address         | string      | null: false                       |
+| building        | string      |                                   |
+| telephone       | string      | null: false                       |
+| order           | references  | null: false, foreign_key: true    |
 
 # association
 - belongs_to :order
