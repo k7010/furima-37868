@@ -37,7 +37,7 @@
 - belongs_to :status
 - belongs_to :cost
 - belongs_to :prefecture
-- belongs_to :day
+- belongs_to :delivery_day
 - has_one :order
 
 
