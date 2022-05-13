@@ -76,8 +76,12 @@ RSpec.describe Item, type: :model do
       it 'priceが10000000円以上では出品できない' do
         @item.price = '10000000'
         @item.valid?
-        # binding.pry
         expect(@item.errors.full_messages).to include('Price is out of setting range')
+      end
+      it 'userが紐付いていないと保存できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
