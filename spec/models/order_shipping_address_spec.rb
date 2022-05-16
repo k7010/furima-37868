@@ -2,20 +2,14 @@ require 'rails_helper'
 
 RSpec.describe OrderShippingAddress, type: :model do
   before do
-    @order_shipping_address = FactoryBot.build(:order_shipping_address)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @order_shipping_address = FactoryBot.build(:order_shipping_address, user_id: user.id, item_id: item.id)
   end
 
   describe '配送先情報' do
     context '配送先情報を保存できる場合' do
       it '入力項目を全て正しく入力している場合' do
-        expect(@order_shipping_address).to be_valid
-      end
-      it 'user_idがあれば保存できる' do
-        @order_shipping_address.user_id = 1
-        expect(@order_shipping_address).to be_valid
-      end
-      it 'item_idがあれば保存できる' do
-        @order_shipping_address.item_id = 1
         expect(@order_shipping_address).to be_valid
       end
       it 'buildingが空欄でも登録できる'do
