@@ -10,6 +10,18 @@ RSpec.describe OrderShippingAddress, type: :model do
       it '入力項目を全て正しく入力している場合' do
         expect(@order_shipping_address).to be_valid
       end
+      it 'user_idがあれば保存できる' do
+        @order_shipping_address.user_id = 1
+        expect(@order_shipping_address).to be_valid
+      end
+      it 'item_idがあれば保存できる' do
+        @order_shipping_address.item_id = 1
+        expect(@order_shipping_address).to be_valid
+      end
+      it 'buildingが空欄でも登録できる'do
+        @order_shipping_address.building = ''
+        expect(@order_shipping_address).to be_valid
+      end
     end
 
     context '配送先情報を保存できない場合' do
@@ -55,6 +67,11 @@ RSpec.describe OrderShippingAddress, type: :model do
       end
       it 'telephoneが10桁未満だと保存できない' do
         @order_shipping_address.telephone = '123456789'
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include('Telephone is too short')
+      end
+      it 'telephoneが12桁以上だと保存できない' do
+        @order_shipping_address.telephone = '1234567891011'
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include('Telephone is too short')
       end
